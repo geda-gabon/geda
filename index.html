@@ -2,118 +2,131 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b4f4a">
-<title>GEDA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12382b">
+<title>AFRIMARKET — Prototype</title>
 <style>
-:root{--brand:#0b4f4a;--act:#0e6b63;--sun:#f2b233;--soft:#e3f1ee;--bg:#f4f7f6;--card:#fff;--ink:#14231f;--muted:#5f716c;--line:#dbe6e3}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px system-ui,sans-serif}[hidden]{display:none!important}
-.app{max-width:560px;margin:auto;padding:0 16px 96px}
-header{background:var(--brand);color:#fff;margin:0 -16px;padding:18px 16px;border-bottom:4px solid var(--sun);border-radius:0 0 22px 22px}
-header b{font-size:26px;letter-spacing:3px}header small{display:block;font-size:12px;color:#cfe8e3}header input{margin-top:12px}
-h2{font-size:19px;margin:18px 0 10px}h3{font-size:15px;margin:0 0 4px}.muted{color:var(--muted);font-size:12px;line-height:1.5}
-input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff;color:var(--ink);font:inherit}
-label{display:block;font-size:13px;font-weight:700;margin:10px 0 4px}button{font:inherit;color:inherit;cursor:pointer}button:disabled{opacity:.5}
-.btn{border:0;border-radius:11px;background:var(--act);color:#fff;padding:12px;font-weight:700;width:100%;margin-top:10px}.btn.alt{background:var(--soft);color:var(--act)}
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.tile{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px 4px;font-weight:700}.tile span{display:block;font-size:28px}
-.card{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px;margin:9px 0;overflow-wrap:anywhere;white-space:pre-line}
-button.card{white-space:normal}.line{display:flex;gap:11px}.line>div{min-width:0}
-.thumb{flex:0 0 74px;height:74px;border-radius:11px;background:var(--soft);display:grid;place-items:center;font-size:32px;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover}.big{width:100%;max-height:320px;object-fit:cover;border-radius:14px}
-.price{color:var(--act);font-weight:800}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#fff;border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
-nav button{flex:1;max-width:112px;border:0;background:none;color:var(--muted);font-size:11px}nav button.on{color:var(--act);font-weight:800}nav span{display:block;font-size:20px}
-#toast{position:fixed;left:16px;right:16px;bottom:88px;max-width:520px;margin:auto;background:var(--brand);color:#fff;border:1px solid var(--sun);border-radius:12px;padding:12px;text-align:center}
+:root{--g:#12382b;--g2:#1d6047;--mint:#e8f3ec;--bg:#f5f7f5;--ink:#18251e;--muted:#69766f;--line:#e3e9e4;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.app{max-width:560px;margin:auto;min-height:100vh;padding:0 14px 88px}
+header{background:var(--g);color:white;margin:0 -14px;padding:calc(16px + env(safe-area-inset-top)) 18px 17px;border-radius:0 0 22px 22px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-size:20px;font-weight:850;letter-spacing:.5px}.brand small{display:block;font-size:10px;font-weight:500;letter-spacing:1.5px;color:#c6dfd0;margin-top:2px}
+.avatar{width:39px;height:39px;border-radius:50%;background:#ffffff20;display:grid;place-items:center;font-size:20px}
+.search{margin-top:17px;background:white;border-radius:13px;padding:0 12px;display:flex;align-items:center;gap:8px;color:#65736b}
+.search input{border:0;outline:0;width:100%;padding:13px 0;font:inherit}
+.location{font-size:12px;color:#d3e6da;margin-top:10px}
+h2{font-size:18px;margin:22px 2px 12px}.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.categories{display:flex;gap:8px;overflow:auto;padding:2px 0 6px;scrollbar-width:none}.cat{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:22px;padding:8px 12px;font-size:12px}.cat.active{background:var(--mint);border-color:#b8d6c3;color:var(--g);font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.product{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.photo{height:122px;background:linear-gradient(135deg,#e8efe9,#d9e7dd);display:grid;place-items:center;font-size:48px}
+.pbody{padding:11px}.pname{font-weight:700;font-size:13px;line-height:1.3;min-height:34px}.price{font-weight:850;color:var(--g);margin:7px 0 2px}.seller{font-size:11px;color:var(--muted)}
+.btn{border:0;border-radius:11px;background:var(--g2);color:white;padding:11px 13px;font-weight:700;font-size:13px;width:100%;margin-top:9px}
+.btn.secondary{background:var(--mint);color:var(--g)}.btn:disabled{opacity:.5}
+.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+label{display:block;font-size:12px;font-weight:700;margin:10px 0 5px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:white;font:inherit}
+textarea{min-height:72px;resize:vertical}
+.tabs{display:flex;gap:8px;margin:16px 0}.tabs button{flex:1;border:1px solid var(--line);background:white;border-radius:11px;padding:10px;font-weight:700;color:var(--muted)}.tabs button.active{background:var(--mint);color:var(--g);border-color:#bdd8c7}
+.view{display:none}.view.active{display:block}
+nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;padding:7px 5px calc(7px + env(safe-area-inset-bottom));z-index:10}
+nav button{border:0;background:transparent;color:var(--muted);font-size:10px;flex:1;max-width:120px;padding:5px 2px;font-weight:600}nav button span{display:block;font-size:20px;margin-bottom:2px}nav button.active{color:var(--g)}
+.badge{display:inline-block;padding:5px 8px;border-radius:20px;background:#fff1d8;color:#815d16;font-size:10px;font-weight:700}
+.notice{padding:12px;border-radius:12px;background:#edf3ef;color:#53635a;font-size:11px;line-height:1.5;margin:12px 0}
+.empty{text-align:center;padding:24px 12px;color:var(--muted);font-size:13px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hidden{display:none!important}
+@media(min-width:560px){body{padding-top:18px}.app{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--bg)}header{border-radius:0}}
 </style>
 </head>
 <body>
 <div class="app">
-<header><b>GEDA</b><small>Tout ce dont vous avez besoin, au même endroit.</small><input id="q" placeholder="🔍 Rechercher sur GEDA" aria-label="Recherche"></header>
-<main id="main"><p>Chargement…</p></main>
+<header>
+ <div class="top"><div class="brand">AFRIMARKET<small>ACHETER • VENDRE • PARTOUT EN AFRIQUE</small></div><div class="avatar">👤</div></div>
+ <div class="search"><span>⌕</span><input id="search" placeholder="Que recherchez-vous ?"></div>
+ <div class="location">📍 Livraison et annonces · <span id="countryLabel">Gabon</span></div>
+</header>
+
+<section id="home" class="view active">
+ <div class="tabs"><button id="buyerTab" class="active" onclick="setMode('buyer')">Acheter</button><button id="sellerTab" onclick="setMode('seller')">Vendre</button></div>
+ <div id="buyerArea">
+  <div class="row"><h2>Découvrir les produits</h2><span class="badge">Prototype</span></div>
+  <div class="categories" id="categories">
+   <button class="cat active" onclick="filterCat('Tous',this)">Tout</button><button class="cat" onclick="filterCat('Téléphones',this)">Téléphones</button><button class="cat" onclick="filterCat('Mode',this)">Mode</button><button class="cat" onclick="filterCat('Maison',this)">Maison</button><button class="cat" onclick="filterCat('Auto',this)">Auto</button>
+  </div>
+  <div class="grid" id="products"></div>
+  <div class="notice">Les articles affichés sont des exemples de démonstration. Aucun vendeur réel ni paiement n'est connecté.</div>
+ </div>
+ <div id="sellerArea" class="hidden">
+  <h2>Publier un article</h2>
+  <div class="panel">
+   <label>Nom de l'article</label><input id="newName" placeholder="Ex. Téléphone Samsung">
+   <label>Catégorie</label><select id="newCat"><option>Téléphones</option><option>Mode</option><option>Maison</option><option>Auto</option><option>Autres</option></select>
+   <label>Prix (FCFA, démonstration)</label><input id="newPrice" type="number" min="1" placeholder="Ex. 85000">
+   <label>Ville / quartier</label><input id="newPlace" placeholder="Ex. Libreville, Akanda">
+   <label>Description</label><textarea id="newDesc" placeholder="Décris ton article, son état et les conditions de vente"></textarea>
+   <button class="btn" onclick="publish()">Prévisualiser et publier dans cette démo</button>
+   <p class="muted">Cette publication reste uniquement sur cet appareil et ne sera pas visible par d'autres utilisateurs.</p>
+  </div>
+ </div>
+</section>
+
+<section id="cart" class="view">
+ <h2>Mon panier</h2><div id="cartItems"></div><div class="panel"><div class="row"><b>Total indicatif</b><b id="total">0 FCFA</b></div><button class="btn" onclick="alert('Le paiement réel sera ajouté après intégration d’un prestataire agréé et vérification des pays desservis.')">Continuer vers le paiement</button><p class="muted">Aucun paiement réel n'est effectué dans cette version.</p></div>
+</section>
+
+<section id="orders" class="view">
+ <h2>Mes commandes</h2><div class="panel empty">Tu n'as pas encore de commande.<br>Les commandes seront disponibles après connexion au serveur.</div>
+</section>
+
+<section id="account" class="view">
+ <h2>Mon compte</h2>
+ <div class="panel">
+  <label>Je suis</label><select id="role"><option>Acheteur et vendeur</option><option>Acheteur</option><option>Vendeur</option></select>
+  <label>Pays</label><select id="country" onchange="document.getElementById('countryLabel').textContent=this.value">
+   <option>Gabon</option><option>Cameroun</option><option>Congo</option><option>Côte d’Ivoire</option><option>Sénégal</option><option>Bénin</option><option>Togo</option><option>RDC</option><option>Autre pays africain</option>
+  </select>
+  <label>Adresse e-mail (facultatif dans cette démo)</label><input type="email" placeholder="nom@exemple.com">
+  <div class="notice">La création de compte sécurisée, la vérification des vendeurs et la sauvegarde en ligne seront ajoutées dans une prochaine étape. Ne saisis pas de mot de passe ou de données bancaires ici.</div>
+ </div>
+ <div class="panel"><b>Centre de confiance</b><p class="muted">Signaler une annonce · Aide et réclamations · Conditions de vente · Confidentialité</p><span class="badge">À construire</span></div>
+</section>
+
+<footer class="muted" style="text-align:center;padding:18px 0">AFRIMARKET · Prototype mobile 0.1</footer>
 </div>
-<nav id="nav"></nav><div id="toast" role="status" hidden></div>
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,signOut} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import {getFirestore,collection,doc,getDoc,getDocs,addDoc,setDoc,deleteDoc,query,where,orderBy,limit,serverTimestamp} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-const app=initializeApp({apiKey:"AIzaSyDxvBb6Kp_RCz0pROPETVq4zVsUX5L1Dlc",authDomain:"geda-46333.firebaseapp.com",projectId:"geda-46333",storageBucket:"geda-46333.firebasestorage.app",messagingSenderId:"75086378027",appId:"1:75086378027:web:360619e13da0fe2189e66e"});
-const auth=getAuth(app),db=getFirestore(app);
-const MOD={immo:['🏠','Immobilier',['Maison à louer','Appartement','Chambre','Terrain','Bureau']],
-serv:['🛠','Services',['Électricien','Plombier','Soudeur','Mécanicien','Menuisier','Maçon','Informaticien','Agent HSE','Climaticien','Jardinier','Femme de ménage']],
-job:['💼','Emploi',['CDI','CDD','Stage','Mission']],
-shop:['🛒','Marketplace',['Téléphones','Voitures','Électroménager','Ordinateurs','Matériel industriel']]};
-let user=null,me=null,isAdmin=false,ADS=[],view='home',mod='immo',sel=null,f={},photo='',signup=false,timer;
-const $=i=>document.getElementById(i),val=i=>$(i)?$(i).value.trim():'';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
-const money=n=>n.toLocaleString('fr-FR')+' FCFA';
-let blocked=[];try{blocked=JSON.parse(localStorage.getItem('geda-blocked'))||[]}catch(e){}
-function toast(t){$('toast').textContent=t;$('toast').hidden=false;clearTimeout(timer);timer=setTimeout(()=>$('toast').hidden=true,3500)}
-const btn=(a,v,t,c='')=>`<button type="button" class="btn ${c}" data-a="${a}" data-v="${esc(v)}">${t}</button>`;
-const opts=(l,v)=>l.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
-const field=(id,label,extra='',v='')=>`<label for="${id}">${label}</label><input id="${id}" value="${esc(v)}" ${extra}>`;
-const area=(id,label,max,ph='',v='')=>`<label for="${id}">${label}</label><textarea id="${id}" rows="4" maxlength="${max}" placeholder="${ph}">${esc(v)}</textarea>`;
-const choice=(id,label,l,v)=>`<label for="${id}">${label}</label><select id="${id}">${opts(l,v)}</select>`;
-const safeImg=s=>typeof s==='string'&&s.startsWith('data:image/jpeg')?esc(s):'';
-const ads=()=>ADS.filter(a=>MOD[a.m]&&!blocked.includes(a.uid));
-const rows=s=>s.docs.map(d=>({id:d.id,...d.data()}));
-const recent=l=>l.sort((a,b)=>(b.ts?.seconds||0)-(a.ts?.seconds||0));
-async function loadAds(){ADS=rows(await getDocs(query(collection(db,'ads'),orderBy('ts','desc'),limit(100))))}
-const card=a=>`<button class="card" data-a="open" data-v="${a.id}"><div class="line"><div class="thumb">${safeImg(a.img)?`<img src="${safeImg(a.img)}" alt="">`:MOD[a.m][0]}</div><div><h3>${esc(a.title)}</h3><span class="price">${a.price?money(a.price):esc(a.type)}</span><div class="muted">📍 ${esc(a.quartier)}, ${esc(a.city)} · ${esc(a.owner)}</div></div></div></button>`;
-function results(){
- const q=val('q').toLowerCase();
- const l=ads().filter(a=>(view==='home'||a.m===mod)&&(!f.type||a.type===f.type)&&(!f.uid||a.uid===f.uid)&&(!f.city||String(a.city).toLowerCase().includes(f.city.toLowerCase()))&&(!f.min||a.price>=+f.min)&&(!f.max||a.price<=+f.max)&&(!f.rooms||a.rooms>=+f.rooms)&&[a.title,a.type,a.quartier,a.city,a.desc,MOD[a.m][1]].join(' ').toLowerCase().includes(q));
- return l.map(card).join('')||'<p class="muted">Aucune annonce pour le moment.</p>';
+<nav>
+ <button class="active" data-view="home"><span>⌂</span>Accueil</button>
+ <button data-view="cart"><span>🛒</span>Panier <b id="cartCount"></b></button>
+ <button data-view="orders"><span>▤</span>Commandes</button>
+ <button data-view="account"><span>♙</span>Compte</button>
+</nav>
+<script>
+let items=[
+ {id:1,name:"Smartphone Android",cat:"Téléphones",price:85000,place:"Libreville, Gabon",emoji:"📱",seller:"Boutique démo"},
+ {id:2,name:"Sac à main",cat:"Mode",price:18000,place:"Douala, Cameroun",emoji:"👜",seller:"Vendeur démo"},
+ {id:3,name:"Chaise de salon",cat:"Maison",price:32000,place:"Abidjan, Côte d’Ivoire",emoji:"🪑",seller:"Maison démo"},
+ {id:4,name:"Accessoires auto",cat:"Auto",price:12500,place:"Dakar, Sénégal",emoji:"🚗",seller:"Auto démo"}
+],cart=[],category="Tous";
+const money=n=>Number(n).toLocaleString("fr-FR")+" FCFA";
+function renderProducts(){
+ const q=document.getElementById('search').value.toLowerCase();
+ const list=items.filter(x=>(category==="Tous"||x.cat===category)&&(x.name+" "+x.place+" "+x.cat).toLowerCase().includes(q));
+ document.getElementById('products').innerHTML=list.length?list.map(x=>`<article class="product"><div class="photo">${x.emoji}</div><div class="pbody"><div class="pname">${escapeHtml(x.name)}</div><div class="price">${money(x.price)}</div><div class="seller">📍 ${escapeHtml(x.place)}</div><button class="btn" onclick="addCart(${x.id})">Ajouter au panier</button></div></article>`).join(''):'<div class="empty">Aucun article correspondant.</div>';
 }
-const loginForm=()=>`<h2>${signup?'Créer un compte':'Connexion'}</h2><div class="card" style="white-space:normal">${signup?choice('role','Je suis',['Client','Prestataire','Entreprise'])+field('name','Nom','maxlength="60"')+field('phone','Téléphone','type="tel" maxlength="25"')+field('city','Ville','maxlength="40"'):''}${field('email','Adresse e-mail','type="email" autocomplete="email"')}${field('pass','Mot de passe (6 caractères minimum)','type="password"')}${btn(signup?'register':'login','',signup?'Créer mon compte':'Me connecter')}${btn('switch','',signup?'J’ai déjà un compte':'Créer un compte','alt')}${signup?'<p class="muted">Votre téléphone est transmis uniquement aux personnes à qui vous envoyez une demande.</p>':btn('reset','','Mot de passe oublié','alt')}</div>`;
-const V={
-home:async()=>`<h2>Que cherchez-vous ?</h2><div class="tiles">${Object.entries(MOD).map(([k,m])=>`<button class="tile" data-a="mod" data-v="${k}"><span>${m[0]}</span>${m[1]}</button>`).join('')}</div><h2>Annonces récentes</h2><div id="list">${results()}</div>`,
-list:async()=>`<h2>${MOD[mod][0]} ${MOD[mod][1]}</h2><select id="f_type" aria-label="Catégorie"><option value="">Toutes les catégories</option>${opts(MOD[mod][2],f.type)}</select>${field('f_city','Ville','',f.city)}${mod==='immo'?field('f_rooms','Chambres minimum','type="number"',f.rooms):''}${mod==='immo'||mod==='shop'?field('f_min','Prix minimum','type="number"',f.min)+field('f_max','Prix maximum','type="number"',f.max):''}${btn('new','','Publier une annonce')}<div id="list">${results()}</div>`,
-detail:async()=>{const a=ADS.find(x=>x.id===sel);if(!a)return btn('go','home','Retour');const rv=rows(await getDocs(query(collection(db,'reviews'),where('target','==',a.uid))));const mine=user?.uid===a.uid;
- return btn('go','list','← Retour','alt')+(safeImg(a.img)?`<p><img class="big" src="${safeImg(a.img)}" alt=""></p>`:'')+`<h2>${esc(a.title)}</h2>${a.price?`<p class="price">${money(a.price)}</p>`:''}<p class="muted">${esc(a.type)}${a.rooms?` · ${+a.rooms} chambre(s)`:''} · 📍 ${esc(a.quartier)}, ${esc(a.city)}${a.gps?`<br>GPS : ${esc(a.gps)}`:''}</p><p>${esc(a.desc)}</p><p><b>${esc(a.owner)}</b><br><span class="muted">${rv.length?`⭐ ${(rv.reduce((s,r)=>s+(+r.note),0)/rv.length).toFixed(1)} (${rv.length} avis)`:'Pas encore d’avis'} · identité non vérifiée</span></p>`+
- (mine||isAdmin?btn('del',a.id,'Supprimer l’annonce','alt'):'')+
- (mine?'':area('need',a.m==='job'?'Votre CV et votre message':'Votre message',3000,a.m==='serv'?'Réparation d’une fuite à Nzeng-Ayong.':'',a.m==='job'?me?.cv:'')+btn('send',a.id,a.m==='job'?'Postuler':'Envoyer ma demande')+'<p class="muted">Votre nom et votre téléphone seront transmis à l’annonceur. Ne payez rien avant d’avoir vérifié.</p>'+
- (a.m==='shop'?btn('store',a.uid,'Voir la boutique','alt'):'')+`<div class="card" style="white-space:normal">${choice('note','Votre note',['5','4','3','2','1'])}${field('avis','Votre avis','maxlength="200"')}${btn('review',a.uid,'Publier l’avis','alt')}</div>`+btn('report',a.id,'🚩 Signaler','alt')+btn('block',a.uid,'Bloquer ce compte','alt'))+rv.map(r=>`<div class="card">${+r.note}/5 · ${esc(r.text)}</div>`).join('')},
-new:async()=>`<h2>Publier · ${MOD[mod][1]}</h2>${field('title',mod==='job'?'Poste':'Titre','maxlength="70"')}${choice('type','Catégorie',MOD[mod][2])}${mod==='immo'||mod==='shop'?field('price','Prix (FCFA)','type="number" min="1"'):''}${mod==='immo'?field('rooms','Nombre de chambres','type="number" min="0"'):''}${field('city','Ville','maxlength="40"',me.city)}${field('quartier','Quartier','maxlength="40"')}${area('desc','Description',600)}${mod==='immo'?field('gps','Position GPS (facultatif)','maxlength="40"'):''}${field('img','Photo','type="file" accept="image/*"')}<div id="preview"></div>${btn('publish','','Publier')}`,
-inbox:async()=>{if(!user)return loginForm();
- const get=async k=>recent(rows(await getDocs(query(collection(db,'requests'),where(k,'==',user.uid)))));
- const [got,sent]=await Promise.all([get('to'),get('from')]);
- return `<h2>Demandes reçues</h2>${got.map(r=>`<div class="card"><b>${esc(r.title)}</b>\n${esc(r.fromName)} · ${esc(r.fromPhone)}\n${esc(r.text)}</div>`).join('')||'<p class="muted">Aucune demande reçue.</p>'}<h2>Demandes envoyées</h2>${sent.map(r=>`<div class="card"><b>${esc(r.title)}</b>\n${esc(r.text)}</div>`).join('')||'<p class="muted">Aucune demande envoyée.</p>'}`},
-account:async()=>{if(!user)return loginForm();
- let admin='';if(isAdmin){const r=rows(await getDocs(collection(db,'reports')));admin=`<h2>Administration</h2><div class="card">Annonces affichées : ${ADS.length}\nSignalements : ${r.length}</div>`+r.map(x=>`<button class="card" data-a="open" data-v="${esc(x.adId)}">🚩 ${esc(x.title)}</button>`).join('')}
- return `<h2>Mon compte</h2><div class="card"><b>${esc(me?.name)}</b>\n${esc(me?.role)} · ${esc(me?.phone)} · ${esc(me?.city)}\n${esc(user.email)}</div>${area('cv','Mon CV',2500,'Expériences, formation',me?.cv)}${btn('savecv','','Enregistrer mon CV')}${btn('logout','','Se déconnecter','alt')}${admin}`}
-};
-let turn=0;
-async function render(){
- const n=++turn;$('nav').innerHTML=[['home','🏠','Accueil'],['list','🔎','Explorer'],['inbox','✉️','Demandes'],['account','👤','Compte']].map(([v,i,t])=>`<button class="${v===view?'on':''}" data-a="go" data-v="${v}"><span>${i}</span>${t}</button>`).join('');
- try{const html=await V[view]();if(n===turn)$('main').innerHTML=html}catch(e){console.error(e);if(n===turn)$('main').innerHTML='<p>Impossible de charger. Vérifiez votre connexion.</p>'+btn('go','home','Réessayer')}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function filterCat(c,b){category=c;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProducts();}
+function setMode(m){document.getElementById('buyerArea').classList.toggle('hidden',m!=='buyer');document.getElementById('sellerArea').classList.toggle('hidden',m!=='seller');document.getElementById('buyerTab').classList.toggle('active',m==='buyer');document.getElementById('sellerTab').classList.toggle('active',m==='seller');}
+function publish(){
+ let name=document.getElementById('newName').value.trim(),price=Number(document.getElementById('newPrice').value),cat=document.getElementById('newCat').value,place=document.getElementById('newPlace').value.trim()||'Localisation non précisée';
+ if(!name||!price||price<1){alert('Indique un nom d’article et un prix valide.');return;}
+ items.unshift({id:Date.now(),name,cat,price,place,emoji:cat==='Mode'?'👕':cat==='Maison'?'🛋️':cat==='Auto'?'🚘':'📦',seller:'Votre annonce'});
+ document.getElementById('newName').value='';document.getElementById('newPrice').value='';document.getElementById('newPlace').value='';document.getElementById('newDesc').value='';
+ category='Tous';document.querySelectorAll('.cat').forEach((x,i)=>x.classList.toggle('active',i===0));setMode('buyer');renderProducts();alert('Annonce ajoutée à la démonstration sur cet appareil uniquement.');
 }
-async function go(v){view=v;photo='';await render();scrollTo(0,0)}
-function needAccount(){if(user&&me)return false;go('account');toast('Connectez-vous d’abord.');return true}
-const A={
-go:v=>go(v),mod:v=>{mod=v;f={};return go('list')},open:v=>{const a=ADS.find(x=>x.id===v);if(!a)return toast('Annonce supprimée.');sel=v;mod=a.m;return go('detail')},
-store:v=>{f={uid:v};return go('list')},new:()=>needAccount()||go('new'),switch:()=>{signup=!signup;return render()},
-register:async()=>{const p={role:val('role'),name:val('name'),phone:val('phone'),city:val('city'),cv:''};if(!p.name||!p.phone||!p.city)return toast('Nom, téléphone et ville obligatoires.');
- const c=await createUserWithEmailAndPassword(auth,val('email'),$('pass').value);await setDoc(doc(db,'users',c.user.uid),p);user=c.user;me=p;toast('Compte créé.');await go('home')},
-login:async()=>{await signInWithEmailAndPassword(auth,val('email'),$('pass').value);await go('home')},
-reset:async()=>{if(!val('email'))return toast('Écrivez votre e-mail.');await sendPasswordResetEmail(auth,val('email'));toast('Si ce compte existe, un e-mail a été envoyé.')},
-logout:async()=>{await signOut(auth);await go('home')},
-publish:async()=>{if(needAccount())return;const price=Math.round(+val('price'))||0;if(!val('title')||!val('city')||!val('quartier')||((mod==='immo'||mod==='shop')&&price<=0))return toast('Remplissez le titre, le prix, la ville et le quartier.');
- await addDoc(collection(db,'ads'),{uid:user.uid,owner:me.name,m:mod,title:val('title'),type:val('type'),price,rooms:+val('rooms')||0,city:val('city'),quartier:val('quartier'),desc:val('desc'),gps:val('gps'),img:photo,ts:serverTimestamp()});await loadAds();f={};await go('list');toast('Annonce publiée.')},
-del:async(v,b)=>{if(!b.dataset.ok){b.dataset.ok=1;b.textContent='Appuyez encore pour confirmer';return}await deleteDoc(doc(db,'ads',v));await loadAds();await go('home')},
-send:async v=>{if(needAccount())return;const a=ADS.find(x=>x.id===v),text=val('need');if(!text)return toast('Écrivez votre message.');
- await addDoc(collection(db,'requests'),{from:user.uid,to:a.uid,adId:v,title:a.title,fromName:me.name,fromPhone:me.phone,text,ts:serverTimestamp()});$('need').value='';toast('Demande envoyée.')},
-savecv:async()=>{me={...me,cv:val('cv')};await setDoc(doc(db,'users',user.uid),me);toast('CV enregistré.')},
-review:async v=>{if(needAccount())return;if(!val('avis'))return toast('Écrivez votre avis.');await setDoc(doc(db,'reviews',v+'_'+user.uid),{target:v,author:user.uid,note:+val('note'),text:val('avis')});await render();toast('Avis publié.')},
-report:async v=>{if(needAccount())return;await addDoc(collection(db,'reports'),{author:user.uid,adId:v,title:ADS.find(x=>x.id===v).title});toast('Signalement envoyé.')},
-block:v=>{blocked.push(v);try{localStorage.setItem('geda-blocked',JSON.stringify(blocked))}catch(e){}toast('Compte bloqué sur ce téléphone.');return go('home')}
-};
-document.addEventListener('click',async e=>{const b=e.target.closest('[data-a]');if(!b||b.disabled)return;b.disabled=true;
- try{await A[b.dataset.a](b.dataset.v,b)}catch(x){console.error(x);const c=x.code||'';toast(c.includes('email-already')?'Cet e-mail a déjà un compte.':c.includes('weak-password')?'Mot de passe trop court.':c.includes('invalid')?'E-mail ou mot de passe incorrect.':c.includes('permission')?'Action refusée.':'Échec. Vérifiez la connexion et réessayez.')}
- b.disabled=false});
-document.addEventListener('input',e=>{const i=e.target.id;if(i==='q'){if(view!=='home'&&view!=='list'){go('home');return}if($('list'))$('list').innerHTML=results()}if(i.startsWith('f_')){f[i.slice(2)]=e.target.value;$('list').innerHTML=results()}});
-document.addEventListener('change',e=>{const t=e.target;if(t.id!=='img'||!t.files[0])return;const u=URL.createObjectURL(t.files[0]),im=new Image();im.onload=()=>{const k=Math.min(1,600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);photo=c.toDataURL('image/jpeg',.65);URL.revokeObjectURL(u);$('preview').innerHTML=`<p><img class="big" src="${photo}" alt="Aperçu"></p>`};im.onerror=()=>toast('Image illisible.');im.src=u});
-onAuthStateChanged(auth,async u=>{user=u;me=null;isAdmin=false;
- try{if(u){me=(await getDoc(doc(db,'users',u.uid))).data()||me;isAdmin=(await getDoc(doc(db,'admins',u.uid))).exists()}await loadAds()}catch(e){console.error(e);toast('Connexion à la base impossible.')}
- render()});
+function addCart(id){let x=items.find(p=>p.id===id);cart.push(x);renderCart();alert('Article ajouté au panier.');}
+function renderCart(){document.getElementById('cartCount').textContent=cart.length?'('+cart.length+')':'';document.getElementById('cartItems').innerHTML=cart.length?cart.map((x,i)=>`<div class="panel row"><div><b>${escapeHtml(x.name)}</b><div class="muted">${money(x.price)}</div></div><button class="btn secondary" style="width:auto;margin:0" onclick="removeCart(${i})">Retirer</button></div>`).join(''):'<div class="panel empty">Ton panier est vide.</div>';document.getElementById('total').textContent=money(cart.reduce((s,x)=>s+x.price,0));}
+function removeCart(i){cart.splice(i,1);renderCart();}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.view).classList.add('active');}));
+document.getElementById('search').addEventListener('input',renderProducts);
+renderProducts();renderCart();
 </script>
-</body>
-</html>
+</body></html>
